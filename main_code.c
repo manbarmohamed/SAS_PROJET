@@ -23,7 +23,7 @@ void AjouterTach()
     printf("Description du Tache: \n");
     gets(tache[taille].Description);
     printf("Jour: (entre 1 et 31) ");
-    scanf("%d", &tache[taille].Date_Ech.jour);
+    scanf("%2d", &tache[taille].Date_Ech.jour);
     // Virifie si le jour entre 1 et 31
     if (tache[taille].Date_Ech.jour < 1 || tache[taille].Date_Ech.jour > 31)
     {
@@ -31,7 +31,7 @@ void AjouterTach()
         return;
     }
     printf("Mois: (entre 1 et 12) ");
-    scanf("%d", &tache[taille].Date_Ech.mois);
+    scanf("%2d", &tache[taille].Date_Ech.mois);
     // Virifie si le mois entre 1 et 12
     if (tache[taille].Date_Ech.mois < 1 || tache[taille].Date_Ech.mois > 12)
     {
@@ -39,7 +39,7 @@ void AjouterTach()
         return;
     }
     printf("Annee: (entre 2023 et 2024) ");
-    scanf("%d", &tache[taille].Date_Ech.annee);
+    scanf("%4d", &tache[taille].Date_Ech.annee);
     // Virifie si l'annee entre  2023 et 2024
     if (tache[taille].Date_Ech.annee < 2023 || tache[taille].Date_Ech.annee > 2024)
     {
@@ -240,8 +240,68 @@ void Design()
            "|                                                                  |\n"
            "|__________________________________________________________________|\n");
 }
+void Acceuil()
+{
+    Design();
+    int choix;
+    do
+    {
+        printf("\n __________________________ MENU___________________________________ \n"
+               "|                                                                  |\n"
+               "|               1 : Ajouter une tache                              |\n"
+               "|               2 : Afficher la tache                              |\n"
+               "|               3 : Modifier la tache                              |\n"
+               "|               4 : Supprimer une tache                            |\n"
+               "|               5 : Filtrer les taches par priorite                |\n"
+               "|               6 : Oreder les taches par Date d'echeance          |\n"
+               "|               7 : Souvgarder les taches dans un fichier .txt     |\n"
+               "|               8 : Quitter le Programme                           |\n"
+               "|__________________________________________________________________|\n");
+        // printf("\n--------------------Menu----------------------------\n");
+        // printf("1.Ajouter une tache\n");
+        // printf("2.Afficher les taches\n");
+        // printf("3.Modifier une tache\n");
+        // printf("4.Supprimer une tache\n");
+        // printf("5.Filtrer les taches par priorite\n");
+        // printf("6.Oreder les taches par Date d'echeance\n");
+        // printf("7.Souvgarder les taches dans un fichier txt\n");
+        // printf("8.Quitter le Programme\n");
+        printf("Choix: ");
+        scanf("%d", &choix);
+        switch (choix)
+        {
+        case 1:
+            AjouterTach();
+            break;
+        case 2:
+            AfficherTache();
+            break;
+        case 3:
+            ModifierTache();
+            break;
+        case 4:
+            SupprimerTache();
+            break;
+        case 5:
+            FiltrerTache();
+            break;
+        case 6:
+            OrderParDate();
+            break;
+        case 7:
+            Souvgarder();
+            break;
+        case 8:
+            printf("Fin Programme! ");
+            break;
+        default:
+            printf("choix invalide! ");
+            break;
+        }
+    } while (choix != 8);
+}
 int main()
 {
-
+    Acceuil();
     return 0;
 }
