@@ -195,6 +195,25 @@ void OrderParDate()
     }
     printf("Les tache a ete trie par Date d'echeance. ");
 }
+
+void Souvgarder()
+{
+    FILE *file = fopen("tasks.txt", "w");
+    if (file == NULL)
+    {
+        printf("Erreur lors de l'ouverture du fichier.\n");
+        return;
+    }
+
+    for (int i = 0; i < taille; i++)
+    {
+        fprintf(file, "%s;%d;%d;%d;%d;%d\n", tache[i].Description, tache[i].Date_Ech.jour, tache[i].Date_Ech.mois, tache[i].Date_Ech.annee,
+                tache[i].Priorite, tache[i].Status);
+    }
+
+    fclose(file);
+    printf("Les Taches sauvegardes dans le fichier tasks.txt avec succes!\n");
+}
 int main()
 {
 
