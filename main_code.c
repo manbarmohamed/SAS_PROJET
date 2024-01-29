@@ -185,7 +185,7 @@ void OrderParDate()
     {
         for (int j = i + 1; j < taille; j++)
         {
-            if (tache[i].Date_Ech.annee > tache[j].Date_Ech.annee || (tache[i].Date_Ech.annee == tache[j].Date_Ech.annee && tache[i].Date_Ech.mois > tache[j].Date_Ech.mois) || (tache[i].Date_Ech.annee == tache[j].Date_Ech.annee && tache[i].Date_Ech.mois == tache[j].Date_Ech.mois && (tache[i].Date_Ech.annee == tache[j].Date_Ech.annee && tache[i].Date_Ech.jour > tache[j].Date_Ech.jour)))
+            if (tache[i].Date_Ech.annee > tache[j].Date_Ech.annee || (tache[i].Date_Ech.annee == tache[j].Date_Ech.annee && tache[i].Date_Ech.mois > tache[j].Date_Ech.mois) || (tache[i].Date_Ech.annee == tache[j].Date_Ech.annee && tache[i].Date_Ech.mois == tache[j].Date_Ech.mois && tache[i].Date_Ech.jour > tache[j].Date_Ech.jour))
             {
                 temp = tache[i];
                 tache[i] = tache[j];
@@ -213,6 +213,32 @@ void Souvgarder()
 
     fclose(file);
     printf("Les Taches sauvegardes dans le fichier tasks.txt avec succes!\n");
+}
+void Design()
+{
+    // printf("------------------------------------------------------------");
+    // printf("\n");
+    // printf("\n");
+    // printf("\n");
+    // printf("                        SAS PROJET                           ");
+    // printf("\n");
+    // printf("\n");
+    // printf("\n");
+    // printf("                           Realiser par:     Mohamed MANBAR\n");
+    // printf("\n");
+    // printf("                           Encadre par:     Ibrahim Zeroual\n");
+    // printf("-------------------------------------------------------------\n");
+    printf("\n ________________________PROJET FIN SAS____________________________ \n"
+           "|                                                                  |\n"
+           "|                                                                  |\n"
+           "|                                                                  |\n"
+           "|                                                                  |\n"
+           "|                                                                  |\n"
+           "|                                                                  |\n"
+           "|                            Realiser par:     Mohamed MANBAR      |\n"
+           "|                            Encadre par:      Ibrahim Zeroual     |\n"
+           "|                                                                  |\n"
+           "|__________________________________________________________________|\n");
 }
 int main()
 {
