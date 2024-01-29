@@ -144,6 +144,40 @@ void SupprimerTache()
         printf("Numero invalide!!");
     }
 }
+void FiltrerTache()
+{
+    int priorite;
+    printf("Priorite (1.faible 2.moyenne 3.eleve): ");
+    scanf("%d", &priorite);
+    for (int i = 0; i < taille; i++)
+    {
+        if (tache[i].Priorite == priorite)
+        {
+            printf("Description: %s \nDate d'echeance: %d/%d/%d \n", tache[i].Description, tache[i].Date_Ech.jour, tache[i].Date_Ech.mois, tache[i].Date_Ech.annee);
+            if (tache[i].Priorite == 1)
+            {
+                printf("Priorite: Faible\n");
+            }
+            else if (tache[i].Priorite == 2)
+            {
+                printf("Priorite: Moyenne\n");
+            }
+            else if (tache[i].Priorite == 3)
+            {
+                printf("Priorite: Eleve\n");
+            }
+
+            if (tache[i].Status == 0)
+            {
+                printf("Status: Incomplet\n");
+            }
+            else if (tache[i].Status == 1)
+            {
+                printf("Status: Complet\n");
+            }
+        }
+    }
+}
 int main()
 {
 
