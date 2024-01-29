@@ -91,6 +91,33 @@ void AfficherTache()
         }
     }
 }
+void ModifierTache()
+{
+    int index;
+    printf("entrer le num de la tache a modifier: ");
+    scanf("%d", &index);
+    if (index >= 1 && index <= taille)
+    {
+        getchar();
+        printf("La nouvelle Description: ");
+        gets(tache[index - 1].Description);
+        printf("Nouvelle Jour: ");
+        scanf("%d", &tache[index - 1].Date_Ech.jour);
+        printf("Nouvelle Mois: ");
+        scanf("%d", &tache[index - 1].Date_Ech.mois);
+        printf("Nouvelle Annee: ");
+        scanf("%d", &tache[index - 1].Date_Ech.annee);
+        printf("Nouvelle Priorite (1.faible 2.moyenne 3.eleve): ");
+        scanf("%d", &tache[index - 1].Priorite);
+        printf("La nouvelle Status (0.Incomplete 1.Complete): ");
+        scanf("%d", &tache[index - 1].Status);
+        printf("la tache a ete modifier avec succes\n");
+    }
+    else
+    {
+        printf("Numero invalide!!");
+    }
+}
 int main()
 {
 
