@@ -149,7 +149,7 @@ void SupprimerTache()
         printf("Numero invalide!!");
     }
 }
-void FiltrerTache()
+void FiltrerTacheParPriorite()
 {
     int priorite;
     printf("Priorite (1.faible 2.moyenne 3.eleve): ");
@@ -157,6 +157,62 @@ void FiltrerTache()
     for (int i = 0; i < taille; i++)
     {
         if (tache[i].Priorite == priorite)
+        {
+            printf("Titre: %s \nDescription: %s \nDate d'echeance: %d/%d/%d \n",tache[i].Titre, tache[i].Description, tache[i].Date_Ech.jour, tache[i].Date_Ech.mois, tache[i].Date_Ech.annee);
+            if (tache[i].Priorite == 1)
+            {
+                printf("Priorite: Faible\n");
+            }
+            else if (tache[i].Priorite == 2)
+            {
+                printf("Priorite: Moyenne\n");
+            }
+            else if (tache[i].Priorite == 3)
+            {
+                printf("Priorite: Eleve\n");
+            }
+
+            if (tache[i].Status == 0)
+            {
+                printf("Status: Incomplet\n");
+            }
+            else if (tache[i].Status == 1)
+            {
+                printf("Status: Complet\n");
+            }
+        }
+    }
+}
+void FiltrerTacheParDate()
+{
+    int Jour,Mois,Annee;
+    printf("Jour: (entre 1 et 31) ");
+    scanf("%2d", &Jour);
+    // Virifie si le jour entre 1 et 31
+    if (Jour < 1 || Jour > 31)
+    {
+        printf("Jour invalid. Entrer un jour entre 1 et 31.\n");
+        return;
+    }
+    printf("Mois: (entre 1 et 12) ");
+    scanf("%2d", &Mois);
+    // Virifie si le mois entre 1 et 12
+    if (Mois < 1 || Mois > 12)
+    {
+        printf("Mois invalid. Entrer un mois entre 1 et 12.\n");
+        return;
+    }
+    printf("Annee: (entre 2023 et 2024) ");
+    scanf("%4d", &Annee);
+    // Virifie si l'annee entre  2023 et 2024
+    if (Annee < 2023 || Annee > 2024)
+    {
+        printf("Annee invelid. Entrer annee entre 2023 et 2024.\n");
+        return;
+    }
+    for (int i = 0; i < taille; i++)
+    {
+        if (tache[i].Date_Ech.jour == Jour && tache[i].Date_Ech.mois == Mois &&tache[i].Date_Ech.annee == Annee )
         {
             printf("Titre: %s \nDescription: %s \nDate d'echeance: %d/%d/%d \n",tache[i].Titre, tache[i].Description, tache[i].Date_Ech.jour, tache[i].Date_Ech.mois, tache[i].Date_Ech.annee);
             if (tache[i].Priorite == 1)
@@ -275,10 +331,11 @@ void Acceuil()
                "|               3 : Modifier la tache                                     |\n"
                "|               4 : Supprimer une tache                                   |\n"
                "|               5 : Filtrer les taches par priorite                       |\n"
-               "|               6 : Oreder les taches par Date d'echeance (Croissan)      |\n"
-               "|               7 : Oreder les taches par Date d'echeance (Decroissan)    |\n"
-               "|               8 : Souvgarder les taches dans un fichier .txt            |\n"
-               "|               9 : Quitter le Programme                                  |\n"
+               "|               6 : Filtrer les taches par Date                           |\n"
+               "|               7 : Oreder les taches par Date d'echeance (Croissan)      |\n"
+               "|               8 : Oreder les taches par Date d'echeance (Decroissan)    |\n"
+               "|               9 : Souvgarder les taches dans un fichier .txt            |\n"
+               "|              10 : Quitter le Programme                                  |\n"
                "|_________________________________________________________________________|\n");
         // printf("\n--------------------Menu----------------------------\n");
         // printf("1.Ajouter une tache\n");
@@ -306,25 +363,28 @@ void Acceuil()
             SupprimerTache();
             break;
         case 5:
-            FiltrerTache();
+            FiltrerTacheParPriorite();
             break;
         case 6:
-            OrderParDateCroissan();
+            FiltrerTacheParDate();
             break;
         case 7:
-            OrderParDateDecroissan();
+            OrderParDateCroissan();
             break;
         case 8:
-            Souvgarder();
+            OrderParDateDecroissan();
             break;
         case 9:
+            Souvgarder();
+            break;
+        case 10:
             printf("Fin Programme! ");
             break;
         default:
             printf("choix invalide! ");
             break;
         }
-    } while (choix != 9);
+    } while (choix != 10);
 }
 int main()
 {
