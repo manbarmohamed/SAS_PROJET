@@ -183,7 +183,7 @@ void FiltrerTache()
         }
     }
 }
-void OrderParDate()
+void OrderParDateCroissan()
 {
     Taches temp;
     for (int i = 0; i < taille - 1; i++)
@@ -191,6 +191,23 @@ void OrderParDate()
         for (int j = i + 1; j < taille; j++)
         {
             if (tache[i].Date_Ech.annee > tache[j].Date_Ech.annee || (tache[i].Date_Ech.annee == tache[j].Date_Ech.annee && tache[i].Date_Ech.mois > tache[j].Date_Ech.mois) || (tache[i].Date_Ech.annee == tache[j].Date_Ech.annee && tache[i].Date_Ech.mois == tache[j].Date_Ech.mois && tache[i].Date_Ech.jour > tache[j].Date_Ech.jour))
+            {
+                temp = tache[i];
+                tache[i] = tache[j];
+                tache[j] = temp;
+            }
+        }
+    }
+    printf("Les tache a ete trie par Date d'echeance. ");
+}
+void OrderParDateDecroissan()
+{
+    Taches temp;
+    for (int i = 0; i < taille - 1; i++)
+    {
+        for (int j = i + 1; j < taille; j++)
+        {
+            if (tache[i].Date_Ech.annee < tache[j].Date_Ech.annee || (tache[i].Date_Ech.annee == tache[j].Date_Ech.annee && tache[i].Date_Ech.mois < tache[j].Date_Ech.mois) || (tache[i].Date_Ech.annee == tache[j].Date_Ech.annee && tache[i].Date_Ech.mois == tache[j].Date_Ech.mois && tache[i].Date_Ech.jour < tache[j].Date_Ech.jour))
             {
                 temp = tache[i];
                 tache[i] = tache[j];
@@ -251,17 +268,18 @@ void Acceuil()
     int choix;
     do
     {
-        printf("\n __________________________ MENU___________________________________ \n"
-               "|                                                                  |\n"
-               "|               1 : Ajouter une tache                              |\n"
-               "|               2 : Afficher la tache                              |\n"
-               "|               3 : Modifier la tache                              |\n"
-               "|               4 : Supprimer une tache                            |\n"
-               "|               5 : Filtrer les taches par priorite                |\n"
-               "|               6 : Oreder les taches par Date d'echeance          |\n"
-               "|               7 : Souvgarder les taches dans un fichier .txt     |\n"
-               "|               8 : Quitter le Programme                           |\n"
-               "|__________________________________________________________________|\n");
+        printf("\n __________________________ MENU__________________________________________\n"
+               "|                                                                         |\n"
+               "|               1 : Ajouter une tache                                     |\n"
+               "|               2 : Afficher la tache                                     |\n"
+               "|               3 : Modifier la tache                                     |\n"
+               "|               4 : Supprimer une tache                                   |\n"
+               "|               5 : Filtrer les taches par priorite                       |\n"
+               "|               6 : Oreder les taches par Date d'echeance (Croissan)      |\n"
+               "|               7 : Oreder les taches par Date d'echeance (Decroissan)    |\n"
+               "|               8 : Souvgarder les taches dans un fichier .txt            |\n"
+               "|               9 : Quitter le Programme                                  |\n"
+               "|_________________________________________________________________________|\n");
         // printf("\n--------------------Menu----------------------------\n");
         // printf("1.Ajouter une tache\n");
         // printf("2.Afficher les taches\n");
@@ -291,19 +309,22 @@ void Acceuil()
             FiltrerTache();
             break;
         case 6:
-            OrderParDate();
+            OrderParDateCroissan();
             break;
         case 7:
-            Souvgarder();
+            OrderParDateDecroissan();
             break;
         case 8:
+            Souvgarder();
+            break;
+        case 9:
             printf("Fin Programme! ");
             break;
         default:
             printf("choix invalide! ");
             break;
         }
-    } while (choix != 8);
+    } while (choix != 9);
 }
 int main()
 {
