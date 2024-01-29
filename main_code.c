@@ -118,6 +118,32 @@ void ModifierTache()
         printf("Numero invalide!!");
     }
 }
+void SupprimerTache()
+{
+    int index;
+    char Confirm[3];
+    printf("entrer le num de la tache a modifier: ");
+    scanf("%d", &index);
+    printf("Confirmer la Supprission (entrer oui pour supprimer sinon entrer non) :\n");
+    scanf("%s", Confirm);
+    if (index >= 1 && index <= taille)
+    {
+        if (strcmp(Confirm, "oui") == 0)
+        {
+            for (int i = index; i < taille - 1; i++)
+            {
+                tache[i] = tache[i + 1];
+            }
+            taille--;
+            printf("\nla tache a ete supprimer avec succes\n");
+        }
+    }
+    else
+    {
+        Acceuil();
+        printf("Numero invalide!!");
+    }
+}
 int main()
 {
 
