@@ -178,6 +178,23 @@ void FiltrerTache()
         }
     }
 }
+void OrderParDate()
+{
+    Taches temp;
+    for (int i = 0; i < taille - 1; i++)
+    {
+        for (int j = i + 1; j < taille; j++)
+        {
+            if (tache[i].Date_Ech.annee > tache[j].Date_Ech.annee || (tache[i].Date_Ech.annee == tache[j].Date_Ech.annee && tache[i].Date_Ech.mois > tache[j].Date_Ech.mois) || (tache[i].Date_Ech.annee == tache[j].Date_Ech.annee && tache[i].Date_Ech.mois == tache[j].Date_Ech.mois && (tache[i].Date_Ech.annee == tache[j].Date_Ech.annee && tache[i].Date_Ech.jour > tache[j].Date_Ech.jour)))
+            {
+                temp = tache[i];
+                tache[i] = tache[j];
+                tache[j] = temp;
+            }
+        }
+    }
+    printf("Les tache a ete trie par Date d'echeance. ");
+}
 int main()
 {
 
