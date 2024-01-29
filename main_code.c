@@ -13,8 +13,8 @@ typedef struct
     char Titre[25];
     char Description[100];
     Date_Echeance Date_Ech;
-    int Priorite;
-    int Status; // 0==>Incomplete 1==>Complete
+    int Priorite; // 1==>faible 2==>moyenne 3==>eleve
+    int Status;   // 0==>Incomplete 1==>Complete
 } Taches;
 Taches tache[100];
 int taille = 0;
@@ -69,7 +69,7 @@ void AfficherTache()
         {
             printf("Tache N %d:\n", i + 1);
             printf("\n");
-            printf("Titre: %s \nDescription: %s \nDate d'echeance: %d/%d/%d \n",tache[i].Titre, tache[i].Description, tache[i].Date_Ech.jour, tache[i].Date_Ech.mois, tache[i].Date_Ech.annee);
+            printf("Titre: %s \nDescription: %s \nDate d'echeance: %d/%d/%d \n", tache[i].Titre, tache[i].Description, tache[i].Date_Ech.jour, tache[i].Date_Ech.mois, tache[i].Date_Ech.annee);
             if (tache[i].Priorite == 1)
             {
                 printf("Priorite: Faible\n");
@@ -91,6 +91,7 @@ void AfficherTache()
             {
                 printf("Status: Complet\n");
             }
+            printf("\n______________________\n");
         }
     }
 }
@@ -158,7 +159,9 @@ void FiltrerTacheParPriorite()
     {
         if (tache[i].Priorite == priorite)
         {
-            printf("Titre: %s \nDescription: %s \nDate d'echeance: %d/%d/%d \n",tache[i].Titre, tache[i].Description, tache[i].Date_Ech.jour, tache[i].Date_Ech.mois, tache[i].Date_Ech.annee);
+            printf("Tache N:%d\n", i + 1);
+            printf("______________________\n");
+            printf("Titre: %s \nDescription: %s \nDate d'echeance: %d/%d/%d \n", tache[i].Titre, tache[i].Description, tache[i].Date_Ech.jour, tache[i].Date_Ech.mois, tache[i].Date_Ech.annee);
             if (tache[i].Priorite == 1)
             {
                 printf("Priorite: Faible\n");
@@ -180,12 +183,14 @@ void FiltrerTacheParPriorite()
             {
                 printf("Status: Complet\n");
             }
+
+            printf("\n");
         }
     }
 }
 void FiltrerTacheParDate()
 {
-    int Jour,Mois,Annee;
+    int Jour, Mois, Annee;
     printf("Jour: (entre 1 et 31) ");
     scanf("%2d", &Jour);
     // Virifie si le jour entre 1 et 31
@@ -210,11 +215,13 @@ void FiltrerTacheParDate()
         printf("Annee invelid. Entrer annee entre 2023 et 2024.\n");
         return;
     }
+    printf("\n");
     for (int i = 0; i < taille; i++)
     {
-        if (tache[i].Date_Ech.jour == Jour && tache[i].Date_Ech.mois == Mois &&tache[i].Date_Ech.annee == Annee )
+        if (tache[i].Date_Ech.jour == Jour && tache[i].Date_Ech.mois == Mois && tache[i].Date_Ech.annee == Annee)
         {
-            printf("Titre: %s \nDescription: %s \nDate d'echeance: %d/%d/%d \n",tache[i].Titre, tache[i].Description, tache[i].Date_Ech.jour, tache[i].Date_Ech.mois, tache[i].Date_Ech.annee);
+            printf("Tache N:%d\n", i + 1);
+            printf("Titre: %s \nDescription: %s \nDate d'echeance: %d/%d/%d \n", tache[i].Titre, tache[i].Description, tache[i].Date_Ech.jour, tache[i].Date_Ech.mois, tache[i].Date_Ech.annee);
             if (tache[i].Priorite == 1)
             {
                 printf("Priorite: Faible\n");
@@ -236,6 +243,7 @@ void FiltrerTacheParDate()
             {
                 printf("Status: Complet\n");
             }
+            printf("\n");
         }
     }
 }
@@ -285,7 +293,7 @@ void Souvgarder()
 
     for (int i = 0; i < taille; i++)
     {
-        fprintf(file, "%s;%s;%d;%d;%d;%d;%d\n",tache[i].Titre, tache[i].Description, tache[i].Date_Ech.jour, tache[i].Date_Ech.mois, tache[i].Date_Ech.annee,
+        fprintf(file, "Titre: %s, Description: %s, Date: %d/%d/%d, %d, %d\n", tache[i].Titre, tache[i].Description, tache[i].Date_Ech.jour, tache[i].Date_Ech.mois, tache[i].Date_Ech.annee,
                 tache[i].Priorite, tache[i].Status);
     }
 
@@ -294,18 +302,7 @@ void Souvgarder()
 }
 void Design()
 {
-    // printf("------------------------------------------------------------");
-    // printf("\n");
-    // printf("\n");
-    // printf("\n");
-    // printf("                        SAS PROJET                           ");
-    // printf("\n");
-    // printf("\n");
-    // printf("\n");
-    // printf("                           Realiser par:     Mohamed MANBAR\n");
-    // printf("\n");
-    // printf("                           Encadre par:     Ibrahim Zeroual\n");
-    // printf("-------------------------------------------------------------\n");
+
     printf("\n ________________________PROJET FIN SAS____________________________ \n"
            "|                                                                  |\n"
            "|                                                                  |\n"
@@ -337,15 +334,6 @@ void Acceuil()
                "|               9 : Souvgarder les taches dans un fichier .txt            |\n"
                "|              10 : Quitter le Programme                                  |\n"
                "|_________________________________________________________________________|\n");
-        // printf("\n--------------------Menu----------------------------\n");
-        // printf("1.Ajouter une tache\n");
-        // printf("2.Afficher les taches\n");
-        // printf("3.Modifier une tache\n");
-        // printf("4.Supprimer une tache\n");
-        // printf("5.Filtrer les taches par priorite\n");
-        // printf("6.Oreder les taches par Date d'echeance\n");
-        // printf("7.Souvgarder les taches dans un fichier txt\n");
-        // printf("8.Quitter le Programme\n");
         printf("Choix: ");
         scanf("%d", &choix);
         switch (choix)
