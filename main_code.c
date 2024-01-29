@@ -10,6 +10,7 @@ typedef struct
 } Date_Echeance;
 typedef struct
 {
+    char Titre[25];
     char Description[100];
     Date_Echeance Date_Ech;
     int Priorite;
@@ -20,6 +21,8 @@ int taille = 0;
 void AjouterTach()
 {
     getchar();
+    printf("Titre de la Tache: \n");
+    gets(tache[taille].Titre);
     printf("Description du Tache: \n");
     gets(tache[taille].Description);
     printf("Jour: (entre 1 et 31) ");
@@ -66,7 +69,7 @@ void AfficherTache()
         {
             printf("Tache N %d:\n", i + 1);
             printf("\n");
-            printf("Description: %s \nDate d'echeance: %d/%d/%d \n", tache[i].Description, tache[i].Date_Ech.jour, tache[i].Date_Ech.mois, tache[i].Date_Ech.annee);
+            printf("Titre: %s \nDescription: %s \nDate d'echeance: %d/%d/%d \n",tache[i].Titre, tache[i].Description, tache[i].Date_Ech.jour, tache[i].Date_Ech.mois, tache[i].Date_Ech.annee);
             if (tache[i].Priorite == 1)
             {
                 printf("Priorite: Faible\n");
@@ -99,6 +102,8 @@ void ModifierTache()
     if (index >= 1 && index <= taille)
     {
         getchar();
+        printf("La nouvelle Titre: ");
+        gets(tache[index - 1].Titre);
         printf("La nouvelle Description: ");
         gets(tache[index - 1].Description);
         printf("Nouvelle Jour: ");
@@ -153,7 +158,7 @@ void FiltrerTache()
     {
         if (tache[i].Priorite == priorite)
         {
-            printf("Description: %s \nDate d'echeance: %d/%d/%d \n", tache[i].Description, tache[i].Date_Ech.jour, tache[i].Date_Ech.mois, tache[i].Date_Ech.annee);
+            printf("Titre: %s \nDescription: %s \nDate d'echeance: %d/%d/%d \n",tache[i].Titre, tache[i].Description, tache[i].Date_Ech.jour, tache[i].Date_Ech.mois, tache[i].Date_Ech.annee);
             if (tache[i].Priorite == 1)
             {
                 printf("Priorite: Faible\n");
@@ -207,7 +212,7 @@ void Souvgarder()
 
     for (int i = 0; i < taille; i++)
     {
-        fprintf(file, "%s;%d;%d;%d;%d;%d\n", tache[i].Description, tache[i].Date_Ech.jour, tache[i].Date_Ech.mois, tache[i].Date_Ech.annee,
+        fprintf(file, "%s;%s;%d;%d;%d;%d;%d\n",tache[i].Titre, tache[i].Description, tache[i].Date_Ech.jour, tache[i].Date_Ech.mois, tache[i].Date_Ech.annee,
                 tache[i].Priorite, tache[i].Status);
     }
 
